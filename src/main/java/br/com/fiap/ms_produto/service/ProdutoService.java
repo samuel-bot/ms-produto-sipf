@@ -5,6 +5,7 @@ import br.com.fiap.ms_produto.dto.ProdutoResponseDTO;
 import br.com.fiap.ms_produto.entities.Categoria;
 import br.com.fiap.ms_produto.entities.Produto;
 import br.com.fiap.ms_produto.repositories.CategoriaRepository;
+import br.com.fiap.ms_produto.repositories.LojaRepository;
 import br.com.fiap.ms_produto.repositories.ProdutoRepository;
 import br.com.fiap.ms_produto.service.exceptions.DatabaseException;
 import br.com.fiap.ms_produto.service.exceptions.ResourceNotFoundException;
@@ -24,6 +25,9 @@ public class ProdutoService {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private LojaRepository lojaRepository;
 
     @Transactional(readOnly = true)
     public List<ProdutoResponseDTO> findAll() {
