@@ -1,8 +1,10 @@
 package br.com.fiap.ms_produto.service;
 
+import br.com.fiap.ms_produto.dto.LojaDTO;
 import br.com.fiap.ms_produto.dto.ProdutoRequestDTO;
 import br.com.fiap.ms_produto.dto.ProdutoResponseDTO;
 import br.com.fiap.ms_produto.entities.Categoria;
+import br.com.fiap.ms_produto.entities.Loja;
 import br.com.fiap.ms_produto.entities.Produto;
 import br.com.fiap.ms_produto.repositories.CategoriaRepository;
 import br.com.fiap.ms_produto.repositories.LojaRepository;
@@ -89,6 +91,13 @@ public class ProdutoService {
         // Objeto completo gerenciado
         Categoria categoria = categoriaRepository.getReferenceById(requestDTO.categoria().getId());
         entity.setCategoria(categoria);
+
+        entity.getLojas().clear();
+
+        for(LojaDTO lojaDTO :  requestDTO.lojas()){
+            Loja loja = lojaRepository.getReferenceById(lojaDTO.getId());
+            entity.getLojas().add(loja);
+        }
     }
 
 }
